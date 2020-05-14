@@ -106,7 +106,7 @@ bool MPEG::File::isSupported(IOStream *stream)
   // So we check if a frame header is really valid.
 
   long long headerOffset;
-  const ByteVector buffer = Utils::readHeader(stream, bufferSize(), true, &headerOffset);
+  ByteVector buffer = Utils::readHeader(stream, bufferSize(), true, &headerOffset);
 
   if(buffer.isEmpty())
 	  return false;
