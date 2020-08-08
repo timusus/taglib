@@ -251,6 +251,7 @@ void FileStream::insert(const ByteVector &data, long long start, size_t replace)
   if(data.size() == replace) {
     seek(start);
     writeBlock(data);
+    fflush(d->file);
     return;
   }
   else if(data.size() < replace) {
