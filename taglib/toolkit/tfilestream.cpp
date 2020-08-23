@@ -258,6 +258,7 @@ void FileStream::insert(const ByteVector &data, long long start, size_t replace)
     seek(start);
     writeBlock(data);
     removeBlock(start + data.size(), replace - data.size());
+    fflush(d->file);
     return;
   }
 
@@ -316,6 +317,8 @@ void FileStream::insert(const ByteVector &data, long long start, size_t replace)
 
     buffer = aboutToOverwrite;
   }
+
+  fflush(d->file);
 }
 
 void FileStream::removeBlock(long long start, size_t length)
